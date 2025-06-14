@@ -283,7 +283,7 @@ if __name__ == "__main__":
     args.ckpt = "pretrained/bytetrack_x_mot17.pth.tar"
     args.path = "videos/demo.mp4"
     args.out_path = "results/output.mp4"
-    args.device = "gpu"
+    args.device = "cpu"
     args.save_result = True
     args.conf = 0.5
     args.nms = 0.7
