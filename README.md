@@ -14,24 +14,3 @@
 <center>
 <img src="assets/ocr.png" width="600"/>
 </center>
-
-
-
-
-
-
-
-
-
-
-
-If you find this work useful, please consider to cite our paper:
-```
-@inproceedings{cao2023observation,
-  title={Observation-centric sort: Rethinking sort for robust multi-object tracking},
-  author={Cao, Jinkun and Pang, Jiangmiao and Weng, Xinshuo and Khirodkar, Rawal and Kitani, Kris},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  pages={9686--9696},
-  year={2023}
-}
-```
