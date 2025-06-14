@@ -14,7 +14,6 @@ from yolox.utils.visualize import plot_tracking
 from trackers.ocsort_tracker.ocsort import OCSort
 from trackers.tracking_utils.timer import Timer
 
-
 IMAGE_EXT = [".jpg", ".jpeg", ".webp", ".bmp", ".png"]
 
 from utils.args import make_parser
@@ -124,7 +123,6 @@ def image_demo(predictor, vis_folder, current_time, args):
             timer.toc()
             online_im = img_info['raw_img']
 
-        # result_image = predictor.visual(outputs[0], img_info, predictor.confthre)
         if args.save_result:
             timestamp = time.strftime("%Y_%m_%d_%H_%M_%S", current_time)
             save_folder = osp.join(vis_folder, timestamp)
@@ -202,6 +200,8 @@ def imageflow_demo(predictor, vis_folder, current_time, args):
         frame_id += 1
 
     if args.save_result:
+        vid_writer.release()  # <--- Important! Release to save the video file properly.
+
         res_file = osp.join(vis_folder, f"{timestamp}.txt")
         with open(res_file, 'w') as f:
             f.writelines(results)
@@ -243,7 +243,6 @@ def main(exp, args):
             ckpt_file = args.ckpt
         logger.info("loading checkpoint")
         ckpt = torch.load(ckpt_file, map_location="cpu")
-        # load the model state dict
         model.load_state_dict(ckpt["model"])
         logger.info("loaded checkpoint done.")
 
@@ -276,28 +275,32 @@ def main(exp, args):
 
 
 if __name__ == "__main__":
-    args = make_parser().parse_args([])
-    args.demo_type = "video"
-    args.exp_file = "exps/example/mot/yolox_x_mix_det.py"
-    args.name = None
-    args.ckpt = "pretrained/bytetrack_x_mot17.pth.tar"
-    args.path = "videos/demo.mp4"
-    args.out_path = "results/output.mp4"
-    args.device = "cpu"
-    args.save_result = True
-    args.conf = 0.5
-    args.nms = 0.7
-    args.tsize = 640
-    args.fuse = True
-    args.fp16 = False
-    args.trt = False
-    args.track_thresh = 0.5
-    args.iou_thresh = 0.5
-    args.use_byte = True
-    args.expn = "ocsort_demo"
-    args.min_box_area = 10
-    args.aspect_ratio_thresh = 1.6
+    from argparse import Namespace
 
-    
+    args = Namespace(
+        demo_type="video",
+        exp_file="exps/example/mot/yolox_x_mix_det.py",
+        name=None,
+        path="videos/demo.mp4",
+        out_path="results/output.mp4",
+        ckpt="pretrained/bytetrack_x_mot17.pth.tar",
+        device="gpu",
+        save_result=True,
+        fuse=True,
+        fp16=False,
+        trt=False,
+        conf=0.5,
+        nms=0.7,
+        tsize=640,
+        expn="ocsort_demo",
+        track_thresh=0.5,
+        iou_thresh=0.5,
+        use_byte=True,
+        min_box_area=10,
+        aspect_ratio_thresh=1.6,
+        camid=0
+    )
+
     exp = get_exp(args.exp_file, args.name)
     main(exp, args)
+
