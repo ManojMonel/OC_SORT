@@ -276,6 +276,28 @@ def main(exp, args):
 
 
 if __name__ == "__main__":
-    args = make_parser().parse_args()
+    args = make_parser().parse_args([])
+    args.demo_type = "video"
+    args.exp_file = "exps/example/mot/yolox_x_mix_det.py"
+    args.name = None
+    args.ckpt = "pretrained/bytetrack_x_mot17.pth.tar"
+    args.path = "videos/demo.mp4"
+    args.out_path = "results/output.mp4"
+    args.device = "gpu"
+    args.save_result = True
+    args.conf = 0.5
+    args.nms = 0.7
+    args.tsize = 640
+    args.fuse = True
+    args.fp16 = False
+    args.trt = False
+    args.track_thresh = 0.5
+    args.iou_thresh = 0.5
+    args.use_byte = True
+    args.expn = "ocsort_demo"
+    args.min_box_area = 10
+    args.aspect_ratio_thresh = 1.6
+
+    
     exp = get_exp(args.exp_file, args.name)
     main(exp, args)
