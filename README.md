@@ -15,16 +15,7 @@
 <img src="assets/ocr.png" width="600"/>
 </center>
 
-## News
-* [07/09/2023]: A C++ support is provided. See the [doc](deploy/OCSort/cpp/Readme.md) for instructions. Thanks for the contribution!
-* [07/01/2023]: [Deep OC-SORT](https://github.com/GerardMaggiolino/Deep-OC-SORT/) is accepted to ICIP2023. It adds an adaptive appeareance similarity-based association upon OC-SORT.
-* [03/15/2023]: We update the preprint version on [Arxiv](https://arxiv.org/pdf/2203.14360.pdf). We rename OOS to be "Observation-centric Re-Update" (ORU).
-* [02/28/2023]: OC-SORT is accepted to CVPR 2023. We will update the code and paper soon. We made intensive revision of the paper writing.
-* [02/26/2023]: Deep-OC-SORT, a combination of OC-SORT and deep visual appearance, is released on [Github](https://github.com/GerardMaggiolino/Deep-OC-SORT/) and [Arxiv](https://arxiv.org/abs/2302.11813). Significant performance improvement on MOT17, MOT20 and DanceTrack.
-* [08/16/2022]: Support OC-SORT in [mmtracking](https://github.com/open-mmlab/mmtracking). If you want to do tracking with more advanced and customizable experience, you may want to give it a try. The mmtracking version is still in-preview. Performance on more datasets to be verified.
-* [04/27/2022]: Support intergration with BYTE and multiple cost metrics, such as GIoU, CIoU, etc.
-* [04/02/2022]: A preview version is released after a primary cleanup and refactor. 
-* [03/27/2022]: The [arxiv preprint](https://arxiv.org/abs/2203.14360) of OC-SORT is released.
+
 
 ## Benchmark Performance
 
@@ -54,38 +45,7 @@
 
 
 
-## Get Started
-* See [INSTALL.md](./docs/INSTALL.md) for instructions of installing required components.
 
-* See [GET_STARTED.md](./docs/GET_STARTED.md) for how to get started with OC-SORT.
-
-* See [MODEL_ZOO.md](./docs/MODEL_ZOO.md) for available YOLOX weights.
-
-* See [DEPLOY.md](./docs/DEPLOY.md) for deployment support over ONNX, TensorRT and ncnn.
-
-
-## Demo
-To run the tracker on a provided demo video from [Youtube](https://www.youtube.com/watch?v=qv6gl4h0dvg):
-
-```shell
-python3 tools/demo_track.py --demo_type video -f exps/example/mot/yolox_dancetrack_test.py -c pretrained/ocsort_dance_model.pth.tar --path videos/dance_demo.mp4 --fp16 --fuse --save_result --out_path demo_out.mp4
-```
-
-<center>
-<img src="assets/dance_demo.gif" width="600"/>
-</center>
-
-
-## Roadmap
-We are still actively updating OC-SORT. We always welcome contributions to make it better for the community. We have some high-priorty to-dos as below:
-- [x] Add more asssocitaion cost choices: GIoU, CIoU, etc.
-- [x] Support OC-SORT in [mmtracking](https://github.com/open-mmlab/mmtracking).
-- [ ] Add more deployment options and improve the inference speed.
-- [x] Make OC-SORT adaptive to customized detector (in the [mmtracking](https://github.com/open-mmlab/mmtracking) version).
-
-
-## Acknowledgement and Citation
-The codebase is built highly upon [YOLOX](https://github.com/Megvii-BaseDetection/YOLOX), [filterpy](https://github.com/rlabbe/filterpy), and [ByteTrack](https://github.com/ifzhang/ByteTrack). We thank their wondeful works. OC-SORT, filterpy and ByteTrack are available under MIT License. And [YOLOX](https://github.com/Megvii-BaseDetection/YOLOX) uses Apache License 2.0 License.
 
 If you find this work useful, please consider to cite our paper:
 ```
