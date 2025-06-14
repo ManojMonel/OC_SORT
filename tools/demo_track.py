@@ -289,7 +289,7 @@ if __name__ == "__main__":
         fuse=True,
         fp16=False,
         trt=False,
-        conf=0.5,
+        conf=0.3,
         nms=0.7,
         tsize=640,
         expn="ocsort_demo",
